@@ -1,8 +1,10 @@
 package com.duxetech.vinayagarmantras
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.TypedValue
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -59,23 +61,18 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         spinner1!!.adapter = adapter2
 
-        contentTextView!!.movementMethod = ScrollingMovementMethod()
-
-
         nextButton.setOnClickListener {
             if ( chapter+1 < chapters.size ) {
 
             chapter += 1
-            loadFiles(chapter)
-            setText()
-            spinner.setSelection(chapter) }
+ }
             else {
                 chapter = 0
-                loadFiles(chapter)
-                setText()
-                spinner.setSelection(chapter)
-        }
 
+        }
+            loadFiles(chapter)
+            setText()
+            spinner.setSelection(chapter)
         }
 
         previousButton.setOnClickListener{
@@ -96,12 +93,46 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         return true
     }
 
+    var size = 16F
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.increaseFont -> {
+                if (size < 25)
+                    size += 1F
+                contentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
+                true
+            }
+            R.id.decreaseFont -> {
+                if (size > 11)
+                    size -= 1F
+                contentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
+                true
+            }
+            R.id.about -> {
+
+
+                startActivity(Intent(this, AboutActivity::class.java))
+                true
+            }
+            R.id.share -> {
+                var intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "விநாயகர் மந்திரங்கள் app https://play.google.com/store/apps/details?id=vinayagarmantras&hl=en_IN"
+                )
+                startActivity(
+                    Intent.createChooser(
+                        intent,
+                        "Share via"
+                    )
+                )
+                true
+            }
             else -> super.onOptionsItemSelected(item)
+
         }
     }
 
