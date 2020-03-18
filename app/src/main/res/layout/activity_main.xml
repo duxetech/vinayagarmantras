@@ -89,8 +89,8 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="15dp"
@@ -103,8 +103,8 @@
 
     <Button
         android:id="@+id/previous"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="15dp"
