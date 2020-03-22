@@ -1,18 +1,17 @@
 package com.duxetech.vinayagarmantras
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
+import android.os.Handler
 import android.util.TypedValue
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
-
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
 
@@ -27,6 +26,15 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var previousButton : Button
     val defText = "*****ஓம் கம் கணபதியே நம*****\n"
     lateinit var scrollView : ScrollView
+    var AudioURL =
+        "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3"
+    var mediaPlayer = MediaPlayer()
+    var started = false
+    var totalTime = 0
+
+    var handler = Handler()
+    lateinit  var playButton : Button
+    lateinit var pregressBar : SeekBar
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -34,6 +42,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+
+        pregressBar = findViewById(R.id.volumeBar)
+        loadSong()
+
+        playButton = findViewById(R.id.play)
 
         var toolbar : androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
         var toolbarTextview : TextView = findViewById(R.id.toolbar_text)
@@ -51,40 +65,90 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         contentTextView.text = content
 
-
-
-
         adapter2 = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, chapters)
-
         spinner1!!.onItemSelectedListener = this
-
-
         spinner1!!.adapter = adapter2
 
         nextButton.setOnClickListener {
-            if ( chapter+1 < chapters.size ) {
-
-            chapter += 1
- }
-            else {
-                chapter = 0
-
-        }
-            loadFiles(chapter)
-            setText()
-            spinner.setSelection(chapter)
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            loadSong()
+            play()
         }
 
         previousButton.setOnClickListener{
-            if ( chapter > 0 )
-            chapter -= 1
-            loadFiles(chapter)
-            setText()
-            spinner.setSelection(chapter)
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            loadSong()
+            play()
         }
+
+
+        playButton.setOnClickListener {
+            play()
+        }
+
+        pregressBar.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    if (fromUser) {
+                        mediaPlayer.seekTo(progress*1000)
+                    }
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                }
+
+            }
+        )
+
+        runOnUiThread(object : Runnable {
+            override fun run() {
+                if (mediaPlayer != null) {
+                    val mCurrentPosition: Int = (mediaPlayer.currentPosition / 1000)
+                    pregressBar.progress = mCurrentPosition
+                }
+                handler.postDelayed(this, 1000)
+            }
+        })
+
+
     }
 
 
+    fun play() {
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.pause()
+            playButton.setBackgroundResource(android.R.drawable.ic_media_play)
+        } else {
+            mediaPlayer.start()
+            playButton.setBackgroundResource(android.R.drawable.ic_media_pause)
+            mediaPlayer.isLooping = true
+
+        }
+
+    }
+    var track = 0
+
+    fun loadSong() {
+        if (track+1 < songs.size) {
+            track++
+        } else {
+            track = 0
+        }
+        mediaPlayer = MediaPlayer.create(applicationContext, songs[track])
+        pregressBar.max = mediaPlayer.duration / 1000
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -139,6 +203,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun loadFiles(chapter : Int){
 
         val file = chapters[chapter]+".txt"
+
 
         try {
             content = application.assets.open(file).bufferedReader().
