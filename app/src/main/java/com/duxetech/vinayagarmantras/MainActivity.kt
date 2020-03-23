@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     var mediaPlayer = MediaPlayer()
     var started = false
     var totalTime = 0
+    var track = 0
 
     var handler = Handler()
     lateinit  var playButton : Button
@@ -50,7 +51,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         trackTitle = findViewById(R.id.trackTitle)
         pregressBar = findViewById(R.id.volumeBar)
         pregressBar.isVisible = false
-        loadSong()
 
         playButton = findViewById(R.id.play)
 
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         contentTextView = findViewById(R.id.contentTextView)
         spinner = findViewById(R.id.spinner1)
+        loadSong()
 
         loadFiles(0)
 
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         playButton.setOnClickListener {
+
             play()
         }
 
@@ -140,7 +142,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             } else {
             mediaPlayer.start()
             playButton.setBackgroundResource(R.drawable.pause)
-                pregressBar.isVisible = true
+            pregressBar.isVisible = true
+            val song =  trackTitle.text.toString()
+            loadFiles(song)
+                spinner.setSelection(chapters.indexOf(song))
+
         }
         mediaPlayer.setOnCompletionListener {
             mediaPlayer.reset()
@@ -150,15 +156,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
     }
-    var track = 0
 
     fun loadSong() {
         mediaPlayer = MediaPlayer.create(applicationContext, songs[track])
         pregressBar.max = mediaPlayer.duration / 1000
-        trackTitle.text = "audio : "+songNames[track]
-        mediaPlayer.setOnCompletionListener {
+        trackTitle.text = songNames[track]
 
-        }
         if (track+1 == songs.size) {
             track = 0
         } else {
@@ -172,6 +175,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     var size = 16F
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        runOnUiThread {
+            mediaPlayer.stop()
+        }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
@@ -229,6 +239,23 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
     }
+
+    private fun loadFiles(chapter : String){
+
+        val file = chapter+".txt"
+        try {
+            content = application.assets.open(file).bufferedReader().
+            use {
+                it.readText()
+            }
+            setText()
+
+        } catch (e: FileNotFoundException) {
+
+        }
+
+    }
+
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
