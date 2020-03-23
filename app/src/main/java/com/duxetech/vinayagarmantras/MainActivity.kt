@@ -2,6 +2,7 @@ package com.duxetech.vinayagarmantras
 
 import android.content.Intent
 import android.media.MediaPlayer
+import android.media.MediaPlayer.OnCompletionListener
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -12,8 +13,10 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
+
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var nextButton : Button
     lateinit var previousButton : Button
     val defText = "*****ஓம் கம் கணபதியே நம*****\n"
+    val suffix = " பரிபூரணம் \n"
     lateinit var scrollView : ScrollView
     var AudioURL =
         "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3"
@@ -35,7 +39,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     var handler = Handler()
     lateinit  var playButton : Button
     lateinit var pregressBar : SeekBar
-
+    lateinit var trackTitle : TextView
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +47,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-
+        trackTitle = findViewById(R.id.trackTitle)
         pregressBar = findViewById(R.id.volumeBar)
+        pregressBar.isVisible = false
         loadSong()
 
         playButton = findViewById(R.id.play)
@@ -83,10 +88,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             play()
         }
 
-
         playButton.setOnClickListener {
             play()
         }
+
+        mediaPlayer.setOnCompletionListener(OnCompletionListener { // Do something when media player end playing
+            pregressBar.isVisible = false
+            playButton.setBackgroundResource(R.drawable.play)
+        })
 
         pregressBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
@@ -121,36 +130,41 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 handler.postDelayed(this, 1000)
             }
         })
-
-
     }
 
-
     fun play() {
-        if (mediaPlayer.isPlaying) {
+            if (mediaPlayer.isPlaying) {
             mediaPlayer.pause()
-            playButton.setBackgroundResource(android.R.drawable.ic_media_play)
-        } else {
+            playButton.setBackgroundResource(R.drawable.play)
+                pregressBar.isVisible = false
+            } else {
             mediaPlayer.start()
-            playButton.setBackgroundResource(android.R.drawable.ic_media_pause)
-            mediaPlayer.isLooping = true
-
+            playButton.setBackgroundResource(R.drawable.pause)
+                pregressBar.isVisible = true
+        }
+        mediaPlayer.setOnCompletionListener {
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            loadSong()
+            play()
         }
 
     }
     var track = 0
 
     fun loadSong() {
-        if (track+1 < songs.size) {
-            track++
-        } else {
-            track = 0
-        }
         mediaPlayer = MediaPlayer.create(applicationContext, songs[track])
         pregressBar.max = mediaPlayer.duration / 1000
+        trackTitle.text = "audio : "+songNames[track]
+        mediaPlayer.setOnCompletionListener {
+
+        }
+        if (track+1 == songs.size) {
+            track = 0
+        } else {
+            track++
+        }
     }
-
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -185,7 +199,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 intent.type = "text/plain"
                 intent.putExtra(
                     Intent.EXTRA_TEXT,
-                    "விநாயகர் மந்திரங்கள் app https://play.google.com/store/apps/details?id=vinayagarmantras&hl=en_IN"
+                    "விநாயகர் மந்திரங்கள் app https://play.google.com/store/apps/details?id=com.duxetech.vinayagarmantras"
                 )
                 startActivity(
                     Intent.createChooser(
@@ -225,10 +239,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setText()
     }
 
+
     fun setText(){
         contentTextView.text = defText+
                 content+
-                "\n" + defText
+                "\n" + "\n"+chapters[chapter]+suffix+defText
         scrollView.scrollTo(0,0)
         setImage()
 
