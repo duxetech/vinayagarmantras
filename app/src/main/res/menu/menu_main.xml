@@ -23,4 +23,13 @@
         android:icon="@android:drawable/ic_menu_share"
         app:showAsAction="never"
         android:orderInCategory="100"
-        /></menu>
+        />
+    <item
+        android:id="@+id/rate"
+        android:title="Rate this app"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="never"
+        android:orderInCategory="100"
+        />
+
+</menu>

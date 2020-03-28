@@ -3,6 +3,7 @@ package com.duxetech.vinayagarmantras
 import android.content.Intent
 import android.media.MediaPlayer
 import android.media.MediaPlayer.OnCompletionListener
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         trackTitle = findViewById(R.id.trackTitle)
         pregressBar = findViewById(R.id.volumeBar)
         pregressBar.isVisible = false
+
+        trackTitle.isSelected = true
 
         playButton = findViewById(R.id.play)
 
@@ -215,6 +218,15 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     Intent.createChooser(
                         intent,
                         "Share via"
+                    )
+                )
+                true
+            }
+            R.id.rate -> {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=com.duxetech.vinayagarmantras")
                     )
                 )
                 true
