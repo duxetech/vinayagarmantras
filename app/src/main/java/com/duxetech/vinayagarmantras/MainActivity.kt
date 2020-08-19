@@ -15,6 +15,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -57,6 +58,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
+
+        mAdView.adListener = object: AdListener(){
+            override fun onAdFailedToLoad(p0: Int) {
+                mAdView.visibility = View.GONE
+            }
+        }
 
         trackTitle = findViewById(R.id.trackTitle)
         pregressBar = findViewById(R.id.volumeBar)
@@ -198,6 +205,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
@@ -239,6 +248,15 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse("market://details?id=com.duxetech.vinayagarmantras")
+                    )
+                )
+                true
+            }
+            R.id.otherApps -> {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://search?q=pub:duxetech")
                     )
                 )
                 true

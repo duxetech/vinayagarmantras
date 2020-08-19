@@ -36,6 +36,7 @@
 
     <TextView
         android:id="@+id/aboutTextView"
+        android:textColor="@color/white"
         android:text=
             "developed by  duxetech.\n
         Android  n iOS app development.\n
@@ -43,26 +44,59 @@
         www.duxetech.com"
         android:autoLink="web"
         android:lineSpacingExtra="5dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         android:gravity="center"
         android:layout_gravity="center"
         android:breakStrategy="balanced"
         android:textAlignment="center"
-        android:layout_marginTop="120dp"
-        android:textColorLink="#2E45C1"
+        android:layout_marginTop="100dp"
+        android:textColorLink="@color/darkBlue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/mailTextView"
+        android:textColor="@color/white"
         android:text="
         mail : \n
         karthikriches@gmail.com \n"
         android:layout_marginTop="10dp"
         android:autoLink="email"
-        android:textColorLink="#2E45C1"
+        android:textColorLink="@color/darkBlue"
         android:lineSpacingExtra="5dp"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textSize="25sp"
         android:gravity="center"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/mailDonate"
+        android:text="
+        donate : paypal \n
+        http://paypal.me/karthikriches \n"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:autoLink="all"
+        android:textColorLink="@color/darkBlue"
+        android:lineSpacingExtra="5dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="
+    https://www.buymeacoffee.com/karthiks"
+        android:layout_marginTop="10dp"
+        android:linksClickable="true"
+        android:clickable="true"
+        android:autoLink="all"
+        android:textColor="@color/darkBlue"
+        android:textColorLink="@color/darkBlue"
+        android:lineSpacingExtra="5dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
