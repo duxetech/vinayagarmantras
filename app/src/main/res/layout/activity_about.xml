@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#8B0091EA"
+    android:background="#6C0091EA"
     tools:context=".AboutActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@drawable/goldbar"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
@@ -91,7 +91,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/button_style_gold"
+        android:background="@drawable/goldbar"
         android:text="Paypal"
         android:textStyle="bold"
         android:textColor="@color/white"/>
@@ -102,7 +102,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/button_style_gold"
+        android:background="@drawable/goldbar"
         android:text="Buy me a Coffee"
         android:textStyle="bold"
         android:textColor="@color/white"/>
