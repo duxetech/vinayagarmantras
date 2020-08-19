@@ -15,6 +15,9 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
 
@@ -42,12 +45,18 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit  var playButton : Button
     lateinit var pregressBar : SeekBar
     lateinit var trackTitle : TextView
+    lateinit var mAdView: AdView
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        MobileAds.initialize(this) {}
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         trackTitle = findViewById(R.id.trackTitle)
         pregressBar = findViewById(R.id.volumeBar)
@@ -76,8 +85,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         contentTextView.text = content
 
-        adapter2 = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, chapters)
+        adapter2 = ArrayAdapter(this,R.layout.spinner_layout, chapters)
         spinner1!!.onItemSelectedListener = this
+        adapter2.setDropDownViewResource(R.layout.spinner_dropdown)
         spinner1!!.adapter = adapter2
 
         nextButton.setOnClickListener {
@@ -142,11 +152,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     fun play() {
             if (mediaPlayer.isPlaying) {
             mediaPlayer.pause()
-            playButton.setBackgroundResource(R.drawable.play)
+            playButton.setBackgroundResource(R.drawable.button_style_play)
                 pregressBar.isVisible = false
             } else {
             mediaPlayer.start()
-            playButton.setBackgroundResource(R.drawable.pause)
+            playButton.setBackgroundResource(R.drawable.button_style_pause)
             pregressBar.isVisible = true
             val song =  trackTitle.text.toString()
             loadFiles(song)
@@ -292,7 +302,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     fun setImage() {
 
         val image = ganesh[chapter]
-        imageView.setImageResource(image)
+        titleImage.setImageResource(image)
     }
 
 }

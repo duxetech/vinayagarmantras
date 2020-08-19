@@ -4,14 +4,14 @@
     tools:context="com.duxetech.vinayagarmantras.MainActivity">
     <item
         android:id="@+id/increaseFont"
-        android:orderInCategory="100"
-        android:title="Font ++"
-        app:showAsAction="never" />
+        android:icon="@drawable/add"
+        app:showAsAction="always"
+        android:title="TODO" />
     <item
         android:id="@+id/decreaseFont"
-        android:orderInCategory="100"
-        android:title="Font - -"
-        app:showAsAction="never" />
+        android:icon="@drawable/remove"
+        app:showAsAction="always"
+        android:title="TODO" />
     <item
         android:id="@+id/about"
         android:orderInCategory="100"
