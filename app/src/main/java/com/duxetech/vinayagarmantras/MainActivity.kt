@@ -59,12 +59,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         var toolbar : androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
         var toolbarTextview : TextView = findViewById(R.id.toolbar_text)
+        toolbarTextview.text = title
+        setSupportActionBar(toolbar)
+
         nextButton  = findViewById(R.id.next)
         previousButton = findViewById(R.id.previous)
         scrollView = findViewById(R.id.scrollView)
 
-        toolbarTextview.text = title
-        setSupportActionBar(toolbar)
+
 
         contentTextView = findViewById(R.id.contentTextView)
         spinner = findViewById(R.id.spinner1)
@@ -239,7 +241,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun loadFiles(chapter : Int){
 
         val file = chapters[chapter]+".txt"
-
 
         try {
             content = application.assets.open(file).bufferedReader().
