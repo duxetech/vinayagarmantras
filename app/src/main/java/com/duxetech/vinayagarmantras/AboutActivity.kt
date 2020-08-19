@@ -1,8 +1,11 @@
 package com.duxetech.vinayagarmantras
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : AppCompatActivity() {
 
@@ -13,5 +16,17 @@ class AboutActivity : AppCompatActivity() {
         var toolbarTextview : TextView = findViewById(R.id.toolbar_text)
         toolbarTextview.text = "Contact"
         setSupportActionBar(toolbar)
+
+        paypal.setOnClickListener {
+            val uri = Uri.parse("http://paypal.me/karthikriches")
+            val intent = Intent(Intent.ACTION_VIEW,uri)
+            startActivity(intent)
+        }
+
+        coffee.setOnClickListener {
+            val uri = Uri.parse("https://buymeacoffee.com/karthiks")
+            val intent = Intent(Intent.ACTION_VIEW,uri)
+            startActivity(intent)        }
+
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gold3"
+    android:background="#8B0091EA"
     tools:context=".AboutActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -72,9 +72,7 @@
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/mailDonate"
-        android:text="
-        donate : paypal \n
-        http://paypal.me/karthikriches \n"
+        android:text="Donate via"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"
         android:autoLink="all"
@@ -85,9 +83,31 @@
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/paypal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_style_gold"
+        android:text="Paypal"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+    <Button
+        android:id="@+id/coffee"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_style_gold"
+        android:text="Buy me a Coffee"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
     <TextView
-        android:text="
-    https://www.buymeacoffee.com/karthiks"
+        android:text=""
         android:layout_marginTop="10dp"
         android:linksClickable="true"
         android:clickable="true"

@@ -19,7 +19,9 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import kotlinx.android.synthetic.main.activity_about.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.toolbar
 import java.io.FileNotFoundException
 
 
@@ -154,6 +156,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 handler.postDelayed(this, 1000)
             }
         })
+
     }
 
     fun play() {

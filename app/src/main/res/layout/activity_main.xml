@@ -181,7 +181,7 @@
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        ads:adSize="SMART_BANNER"
+        ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-1097464279467471/8904590133">
     </com.google.android.gms.ads.AdView>
 
