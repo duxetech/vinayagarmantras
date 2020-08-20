@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gold"
+    tools:context=".IndexActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/goldbar"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            tools:text="விநாயகர் மந்திரங்கள்" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chaptersRecView"
+        android:layout_marginTop="40dp"
+        android:clipToPadding="false"
+        android:padding="4dp"
+        tools:listitem="@layout/item_layout"
+        android:layout_marginBottom="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/goldbar"
+        android:layout_above="@id/playerView"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-1097464279467471/8904590133">
+    </com.google.android.gms.ads.AdView>
+
+    <LinearLayout
+        android:id="@+id/playerView"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginBottom="1dp"
+        android:weightSum="2"
+
+        android:background="@drawable/goldbar"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="200dp"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <SeekBar
+                android:tooltipText="Om"
+                android:scrollbarStyle="insideOverlay"
+                android:id="@+id/progressBar"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/button_style_thumb"
+                android:progressDrawable="@drawable/seekbar"
+                android:background="#1AFFFFFF"
+                />
+            <TextView
+                android:id="@+id/trackTitle"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:text="Om ganpathi"
+                android:autoSizeTextType="uniform"
+                android:textAlignment="center"
+                android:textColor="#ffffff" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <Button
+                android:id="@+id/previousButton"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/button_style_prev"
+                android:textColor="#03115F"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/playButton"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_style_play"
+                android:textColor="#03115F"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_style_next"
+                android:textColor="#03115F"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

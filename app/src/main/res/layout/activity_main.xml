@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".ContentScreen">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -29,27 +29,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textStyle="bold"
             android:textColor="#ffffff"
             tools:text="விநாயகர் மந்திரங்கள்" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner1"
+    <TextView
+        android:text="Om Ganapathi"
+        android:id="@+id/contentTitle"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="25dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/gold"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="41dp"
         android:layout_marginRight="10dp"
+        android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:background="@drawable/spinner_border"/>
+      />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="84dp">
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="71dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginTop="5dp"
                 android:breakStrategy="high_quality"
                 android:gravity="center"
@@ -86,104 +93,18 @@
 
     </ScrollView>
 
-
-    <LinearLayout
-        android:id="@+id/playerView"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_marginBottom="46dp"
-        android:weightSum="2"
-
-        android:background="@drawable/goldbar"
-        android:layout_height="40dp">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="200dp"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-            <SeekBar
-                android:tooltipText="Om"
-                android:scrollbarStyle="insideOverlay"
-                android:id="@+id/volumeBar"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:thumb="@drawable/button_style_thumb"
-                android:progressDrawable="@drawable/seekbar"
-                android:background="#1AFFFFFF"
-                />
-            <TextView
-                android:id="@+id/trackTitle"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:text="Om ganpathi"
-                android:autoSizeTextType="uniform"
-                android:textAlignment="center"
-                android:textColor="#ffffff" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="35dp">
-
-            <Button
-                android:id="@+id/previous"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="2dp"
-                android:background="@drawable/button_style_prev"
-                android:textColor="#03115F"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/play"
-                android:layout_width="60dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/button_style_play"
-                android:textColor="#03115F"
-                android:textSize="16sp"
-                android:textStyle="normal" />
-
-            <Button
-                android:id="@+id/next"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/button_style_next"
-                android:textColor="#03115F"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:background="@drawable/goldbar"
-        android:layout_marginBottom="1dp"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-1097464279467471/8904590133">
+        ads:adUnitId="ca-app-pub-1097464279467471/9680052548">
     </com.google.android.gms.ads.AdView>
+
 
 
 </RelativeLayout>
