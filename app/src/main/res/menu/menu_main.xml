@@ -12,11 +12,13 @@
         android:icon="@drawable/remove"
         app:showAsAction="always"
         android:title="TODO" />
+    <item android:id="@+id/wallpaper"
+        android:title="Vinayagar Wallpaper"
+        app:showAsAction="never"/>
     <item
-        android:id="@+id/about"
-        android:orderInCategory="100"
-        android:title="Contact"
-        app:showAsAction="never" />
+        android:id="@+id/downloadSong"
+        android:title="Download Songs"
+        />
     <item
         android:id="@+id/share"
         android:title="Share this app"
@@ -32,6 +34,11 @@
         android:orderInCategory="100"
         />
 
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="100"
+        android:title="Donate"
+        app:showAsAction="never" />
     <item
         android:id="@+id/otherApps"
         android:title="Other apps"

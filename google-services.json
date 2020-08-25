@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1001705950029",
+    "firebase_url": "https://vinayagarmantras.firebaseio.com",
+    "project_id": "vinayagarmantras",
+    "storage_bucket": "vinayagarmantras.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001705950029:android:5e94d5ea6546d326c50504",
+        "android_client_info": {
+          "package_name": "com.duxetech.vinayagarmantras"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001705950029-35n9i233i9jnnphhe5f3e3qpuuquvbud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.duxetech.vinayagarmantras",
+            "certificate_hash": "722730de90b646db402c44a10e9211d183083f5b"
+          }
+        },
+        {
+          "client_id": "1001705950029-5ak9j5eijlng68vsbiv1kuigguqe0lrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDtuOQDq919a46-LCLGEH2KK8-FB6sMus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001705950029-5ak9j5eijlng68vsbiv1kuigguqe0lrm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

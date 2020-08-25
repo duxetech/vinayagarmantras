@@ -14,7 +14,7 @@ class AboutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_about)
         var toolbar : androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
         var toolbarTextview : TextView = findViewById(R.id.toolbar_text)
-        toolbarTextview.text = "Contact"
+        toolbarTextview.text = "Donate"
         setSupportActionBar(toolbar)
 
         paypal.setOnClickListener {

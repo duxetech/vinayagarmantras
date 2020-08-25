@@ -8,12 +8,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -49,19 +47,20 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         chaptersRecView.adapter = adapter
         chaptersRecView.layoutManager=LinearLayoutManager(this)
         chaptersRecView.setHasFixedSize(true)
-        progressBar.        isVisible = false
+
+        progressBar.isVisible = false
 
         trackTitle.isSelected = true
 
         nextButton.setOnClickListener {
 
+            forward()
             loadSong()
             play()
         }
 
         previousButton.setOnClickListener{
-            mediaPlayer!!.reset()
-            mediaPlayer!!.release()
+            rewind()
             loadSong()
             play()
         }
@@ -139,6 +138,7 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
         }
         mediaPlayer!!.setOnCompletionListener {
+            forward()
             loadSong()
             play()
         }
@@ -154,6 +154,10 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         progressBar.max = mediaPlayer!!.duration / 1000
         trackTitle.text = songNames[track]
 
+
+    }
+
+    fun forward(){
         if (track+1 == songs.size) {
             track = 0
         } else {
@@ -161,27 +165,59 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         }
 
     }
+
+    fun rewind(){
+        if (track == 0) {
+            track = songs.size - 1
+        } else {
+            track--
+        }
+    }
+    var clicked = false
     override fun onItemClick(position: Int) {
 
-        val intent = Intent(this,ContentScreen::class.java)
-        intent.putExtra("chapter",position)
-        startActivity(intent)
+        if (!clicked) {
+            val intent = Intent(this,ContentScreen::class.java)
+            intent.putExtra("chapter",position)
+            startActivity(intent)
+            clicked = true
+        }
+
+
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        clicked = false
+
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+        val increase = menu.findItem(R.id.increaseFont)
+        val decrease = menu.findItem(R.id.decreaseFont)
+        increase.isVisible = false
+        decrease.isVisible = false
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
+            R.id.wallpaper -> {
 
+                startActivity(Intent(this, WallpaperScreen::class.java))
+                true
+            }
+
+            R.id.downloadSong -> {
+
+                startActivity(Intent(this, SongsScreen::class.java))
+                true
+            }
             R.id.about -> {
-
 
                 startActivity(Intent(this, AboutActivity::class.java))
                 true

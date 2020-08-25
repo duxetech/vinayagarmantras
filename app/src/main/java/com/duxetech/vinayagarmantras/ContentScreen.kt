@@ -79,6 +79,12 @@ class ContentScreen : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
+            R.id.wallpaper -> {
+
+                startActivity(Intent(this, WallpaperScreen::class.java))
+                true
+            }
+
             R.id.increaseFont -> {
                 if (size < 25)
                     size += 1F

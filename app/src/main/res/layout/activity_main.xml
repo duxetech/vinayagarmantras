@@ -55,7 +55,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="55dp"
         android:layout_marginTop="71dp">
 
         <LinearLayout
@@ -78,13 +78,13 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="4dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:breakStrategy="high_quality"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
                 android:scrollbars="vertical"
                 android:text="Om"
-                android:textColor="#AF7817"
+                android:textColor="@color/gold"
                 android:textSize="16sp" />
 
 
@@ -98,7 +98,7 @@
         android:id="@+id/adView"
         android:background="@drawable/goldbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
