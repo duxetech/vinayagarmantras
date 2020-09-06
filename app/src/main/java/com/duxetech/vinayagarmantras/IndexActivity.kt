@@ -227,11 +227,6 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
                 true
             }
 
-            R.id.downloadSong -> {
-
-                startActivity(Intent(this, SongsScreen::class.java))
-                true
-            }
             R.id.about -> {
 
                 startActivity(Intent(this, AboutActivity::class.java))
