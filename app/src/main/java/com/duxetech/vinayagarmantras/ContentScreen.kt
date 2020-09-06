@@ -1,26 +1,17 @@
 package com.duxetech.vinayagarmantras
 
 import android.content.Intent
-import android.media.MediaPlayer
-import android.media.MediaPlayer.OnCompletionListener
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.*
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.toolbar
 import java.io.FileNotFoundException
 
 
@@ -32,10 +23,8 @@ class ContentScreen : AppCompatActivity() {
     val defText = "*****ஓம் கம் கணபதியே நம*****\n"
     val suffix = " பரிபூரணம் \n"
 
-
-
-
     lateinit var mAdView: AdView
+    lateinit var mInterstitialAd: InterstitialAd
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +36,6 @@ class ContentScreen : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
-
-
-        index = intent.getIntExtra("chapter",0)
 
 
         setSupportActionBar(toolbar)
@@ -64,6 +50,7 @@ class ContentScreen : AppCompatActivity() {
 
         contentTextView.text = content
 
+
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -76,11 +63,11 @@ class ContentScreen : AppCompatActivity() {
 
 
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
             R.id.wallpaper -> {
-
                 startActivity(Intent(this, WallpaperScreen::class.java))
                 true
             }
@@ -141,7 +128,7 @@ class ContentScreen : AppCompatActivity() {
         }
     }
 
-    private fun loadFiles(chapter : Int){
+    private fun loadFiles(chapter: Int){
 
         val file = chapters[chapter]+".txt"
 
@@ -157,7 +144,22 @@ class ContentScreen : AppCompatActivity() {
 
     }
 
-    private fun loadFiles(chapter : String){
+    fun setText(){
+        contentTextView.text = defText+
+                content+
+                "\n" + "\n"+chapters[index]+suffix+defText
+        scrollView.scrollTo(0, 0)
+        setImage()
+
+    }
+
+    fun setImage() {
+
+        val image = ganeshImages[index]
+        titleImage.setImageResource(image)
+    }
+
+    private fun loadFiles(chapter: String){
 
         val file = chapter+".txt"
         try {
@@ -173,23 +175,5 @@ class ContentScreen : AppCompatActivity() {
 
     }
 
-
-
-
-
-    fun setText(){
-        contentTextView.text = defText+
-                content+
-                "\n" + "\n"+chapters[index]+suffix+defText
-        scrollView.scrollTo(0,0)
-        setImage()
-
-    }
-
-    fun setImage() {
-
-        val image = ganeshImages[index]
-        titleImage.setImageResource(image)
-    }
 
 }

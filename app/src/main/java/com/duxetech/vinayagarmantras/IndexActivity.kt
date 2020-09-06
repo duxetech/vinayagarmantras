@@ -3,29 +3,29 @@ package com.duxetech.vinayagarmantras
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_index.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
+
 
 class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
     var size = 16F
-    val adapter = ExampleAdapter(chapters,this)
+    val adapter = ExampleAdapter(chapters, this)
     lateinit var mAdView: AdView
     var mediaPlayer : MediaPlayer? = null
     var track = 0
     var handler = Handler()
+    var interstitialAd = InterstitialAd(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,11 +69,6 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
             play()
         }
 
-        mediaPlayer?.setOnCompletionListener(MediaPlayer.OnCompletionListener { // Do something when media player end playing
-            progressBar.isVisible = false
-            playButton.setBackgroundResource(R.drawable.play)
-        })
-
         progressBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
@@ -82,7 +77,7 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
                     fromUser: Boolean
                 ) {
                     if (fromUser) {
-                        mediaPlayer?.seekTo(progress*1000)
+                        mediaPlayer?.seekTo(progress * 1000)
                     }
                 }
 
@@ -110,10 +105,23 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
             }
         })
 
+        interAd()
+
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (interstitialAd.isLoaded()) {
+            interstitialAd.show()
+            interstitialAd.setAdListener(object : AdListener() {
+                override fun onAdClosed() {
+                    super.onAdClosed()
+                    finish()
+                }
+            })
+        } else {
+            super.onBackPressed()
+        }
+
         if (mediaPlayer==null) {
             return
         }
@@ -125,6 +133,12 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         }
     }
 
+
+
+    fun interAd(){
+        interstitialAd.adUnitId = "ca-app-pub-1097464279467471/9090202639"
+        interstitialAd.loadAd(AdRequest.Builder().build())
+    }
 
     fun play() {
         if (mediaPlayer?.isPlaying!!) {
@@ -174,11 +188,12 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         }
     }
     var clicked = false
+
     override fun onItemClick(position: Int) {
 
         if (!clicked) {
-            val intent = Intent(this,ContentScreen::class.java)
-            intent.putExtra("chapter",position)
+            val intent = Intent(this, ContentScreen::class.java)
+            intent.putExtra("chapter", position)
             startActivity(intent)
             clicked = true
         }

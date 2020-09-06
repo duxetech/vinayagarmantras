@@ -16,10 +16,6 @@
         android:title="Vinayagar Wallpaper"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/downloadSong"
-        android:title="Download Songs"
-        />
-    <item
         android:id="@+id/share"
         android:title="Share this app"
         android:icon="@android:drawable/ic_menu_share"
