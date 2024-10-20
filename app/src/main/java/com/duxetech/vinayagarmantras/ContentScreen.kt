@@ -10,7 +10,6 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
 
@@ -23,19 +22,10 @@ class ContentScreen : AppCompatActivity() {
     val defText = "*****ஓம் கம் கணபதியே நம*****\n"
     val suffix = " பரிபூரணம் \n"
 
-    lateinit var mAdView: AdView
-    lateinit var mInterstitialAd: InterstitialAd
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
-
 
 
         setSupportActionBar(toolbar)
@@ -44,6 +34,7 @@ class ContentScreen : AppCompatActivity() {
         toolbarTextview.text = title
         setSupportActionBar(toolbar)
 
+        index = intent.getIntExtra("chapter",0)
         contentTitle.text = chapters[index]
 
         loadFiles(index)

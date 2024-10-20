@@ -12,6 +12,7 @@ class ExampleAdapter(
 ) :
 
     RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout,
             parent, false)
@@ -25,7 +26,7 @@ class ExampleAdapter(
     override fun getItemCount() = exampleList.size
     inner class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        val textView1: TextView = itemView.chapterTitle
+        val textView1: TextView = itemView. chapterTitle
         val iv = itemView.titleImage
         init {
             itemView.setOnClickListener(this)
@@ -39,7 +40,6 @@ class ExampleAdapter(
     }
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-
 
     }
 

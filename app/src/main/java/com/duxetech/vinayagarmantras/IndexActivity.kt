@@ -37,10 +37,7 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         toolbarTextview.text = title
         setSupportActionBar(toolbar)
 
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+
 
         loadSong()
 
@@ -105,8 +102,6 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
             }
         })
 
-        interAd()
-
     }
 
     override fun onBackPressed() {
@@ -131,13 +126,6 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
             mediaPlayer!!.release()
             mediaPlayer = null
         }
-    }
-
-
-
-    fun interAd(){
-        interstitialAd.adUnitId = "ca-app-pub-1097464279467471/9090202639"
-        interstitialAd.loadAd(AdRequest.Builder().build())
     }
 
     fun play() {
