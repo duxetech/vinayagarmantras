@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_index.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 
@@ -21,11 +20,9 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
     var size = 16F
     val adapter = ExampleAdapter(chapters, this)
-    lateinit var mAdView: AdView
     var mediaPlayer : MediaPlayer? = null
     var track = 0
     var handler = Handler()
-    var interstitialAd = InterstitialAd(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,17 +102,7 @@ class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
     }
 
     override fun onBackPressed() {
-        if (interstitialAd.isLoaded()) {
-            interstitialAd.show()
-            interstitialAd.setAdListener(object : AdListener() {
-                override fun onAdClosed() {
-                    super.onAdClosed()
-                    finish()
-                }
-            })
-        } else {
-            super.onBackPressed()
-        }
+
 
         if (mediaPlayer==null) {
             return

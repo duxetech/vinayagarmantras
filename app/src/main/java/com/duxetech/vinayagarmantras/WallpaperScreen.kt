@@ -6,8 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
+
 import kotlinx.android.synthetic.main.wallpaper_layout.*
 
 class WallpaperScreen : AppCompatActivity(), WallpaperAdapter.OnItemClickListener {
@@ -19,9 +18,7 @@ class WallpaperScreen : AppCompatActivity(), WallpaperAdapter.OnItemClickListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wallpaper_layout)
 
-        MobileAds.initialize(this) {}
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+
 
         wallpaperRecView.adapter = adapter
         wallpaperRecView.layoutManager = LinearLayoutManager(this)
