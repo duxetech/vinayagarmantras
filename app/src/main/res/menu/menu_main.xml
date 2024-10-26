@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.duxetech.vinayagarmantras.ContentScreen">
+    tools:context="com.karthik.vinayagar.ContentScreen">
     <item
         android:id="@+id/increaseFont"
         android:icon="@drawable/add"

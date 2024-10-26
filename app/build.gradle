@@ -8,7 +8,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.duxetech.vinayagarmantras"
+        applicationId "com.karthik.vinayagar"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 17

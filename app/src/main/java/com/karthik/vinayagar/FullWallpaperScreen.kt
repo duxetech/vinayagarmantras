@@ -1,4 +1,4 @@
-package com.duxetech.vinayagarmantras
+package com.karthik.vinayagar
 
 import android.app.WallpaperManager
 import androidx.appcompat.app.AppCompatActivity

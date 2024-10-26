@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1001705950029:android:5e94d5ea6546d326c50504",
         "android_client_info": {
-          "package_name": "com.duxetech.vinayagarmantras"
+          "package_name": "com.karthik.vinayagar"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1001705950029-35n9i233i9jnnphhe5f3e3qpuuquvbud.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.duxetech.vinayagarmantras",
+            "package_name": "com.karthik.vinayagar",
             "certificate_hash": "722730de90b646db402c44a10e9211d183083f5b"
           }
         },

@@ -1,35 +1,33 @@
-package com.duxetech.vinayagarmantras
+package com.karthik.vinayagar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_layout.view.*
+import kotlinx.android.synthetic.main.wallpaper_image.view.*
 
-class ExampleAdapter(
-    private val exampleList: Array<String>,
+class WallpaperAdapter(
+    private val exampleList: Array<Int>,
     private val listener: OnItemClickListener
 ) :
-
-    RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
-
+    RecyclerView.Adapter<WallpaperAdapter.ExampleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout,
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.wallpaper_image,
             parent, false)
         return ExampleViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         val currentItem = exampleList[position]
-        holder.textView1.text = currentItem
-        holder.iv.setImageResource(ganeshImages.random())
+        holder.image1.setImageResource(currentItem)
     }
     override fun getItemCount() = exampleList.size
+
     inner class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        val textView1: TextView = itemView. chapterTitle
-        val iv = itemView.titleImage
+        val image1 : ImageView = itemView.wallImage
         init {
-            itemView.setOnClickListener(this)
+            image1.setOnClickListener(this)
         }
         override fun onClick(v: View?) {
             val position = adapterPosition
@@ -40,7 +38,5 @@ class ExampleAdapter(
     }
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-
     }
-
 }

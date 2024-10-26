@@ -1,7 +1,6 @@
-package com.duxetech.vinayagarmantras
+package com.karthik.vinayagar
 
 import android.annotation.SuppressLint
-import android.app.WallpaperManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

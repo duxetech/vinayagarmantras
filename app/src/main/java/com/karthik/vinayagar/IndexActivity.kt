@@ -1,4 +1,4 @@
-package com.duxetech.vinayagarmantras
+package com.karthik.vinayagar
 
 import android.content.Intent
 import android.media.MediaPlayer
@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_main.toolbar
 
 class IndexActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
-    var size = 16F
     val adapter = ExampleAdapter(chapters, this)
     var mediaPlayer : MediaPlayer? = null
     var track = 0
